@@ -1,31 +1,33 @@
-%define realname   DVD-Read
-%define version    0.03
-%define release    %mkrel 2
+%define upstream_name    DVD-Read
+%define upstream_version 0.03
 
-Name:       perl-%{realname}
-Version:    %{version}
-Release:    %{release}
-License:    GPL or Artistic
-Group:      Development/Perl
+Name:       perl-%{upstream_name}
+Version:    %perl_convert_version %{upstream_version}
+Release:    %mkrel 1
+
 Summary:    Access to DVD IFO file using libdvdread
-Source:     http://www.cpan.org/modules/by-module/DVD/%{realname}-%{version}.tar.gz
-Url:        http://search.cpan.org/dist/%{realname}
-BuildRoot:  %{_tmppath}/%{name}-%{version}-%{release}-buildroot
-BuildRequires: perl-devel
+License:    GPL+ or Artistic
+Group:      Development/Perl
+Url:        http://search.cpan.org/dist/%{upstream_name}
+Source0:    http://www.cpan.org/modules/by-module/DVD/%{upstream_name}-%{upstream_version}.tar.gz
+
 BuildRequires: libdvdread-devel
+BuildRequires: perl-devel
+
+BuildRoot:  %{_tmppath}/%{name}-%{version}-%{release}
 
 %description
 This module provide way to query video DVD using libdvdread.
 
 %prep
-%setup -q -n %{realname}-%{version} 
+%setup -q -n %{upstream_name}-%{upstream_version}
 
 %build
 %{__perl} Makefile.PL INSTALLDIRS=vendor
 %make
 
 %check
-make test
+%make test
 
 %install
 rm -rf %buildroot
@@ -39,4 +41,3 @@ rm -rf %buildroot
 %doc Changes README sample/*
 %{_mandir}/man3/*
 %perl_vendorlib/*
-
