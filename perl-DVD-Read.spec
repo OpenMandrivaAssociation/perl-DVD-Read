@@ -1,15 +1,13 @@
 %define upstream_name    DVD-Read
-%define upstream_version 0.04
-
 Name:       perl-%{upstream_name}
-Version:    %perl_convert_version %{upstream_version}
-Release:	5
+Version:    0.04
+Release:	6
 
 Summary:    Access to DVD IFO file using libdvdread
 License:    GPL+ or Artistic
 Group:      Development/Perl
-Url:        https://search.cpan.org/dist/%{upstream_name}
-Source0:    http://www.cpan.org/modules/by-module/DVD/%{upstream_name}-%{upstream_version}.tar.gz
+Url:        https://metacpan.org/dist/%{upstream_name}
+Source0:    http://www.cpan.org/modules/by-module/DVD/%{upstream_name}-%{version}.tar.gz
 
 BuildRequires:	make
 BuildRequires: libdvdread-devel
@@ -21,7 +19,7 @@ BuildRoot:  %{_tmppath}/%{name}-%{version}-%{release}
 This module provide way to query video DVD using libdvdread.
 
 %prep
-%setup -q -n %{upstream_name}-%{upstream_version}
+%setup -q -n %{upstream_name}-%{version}
 
 %build
 %{__perl} Makefile.PL INSTALLDIRS=vendor
@@ -59,9 +57,7 @@ rm -rf %buildroot
 
 * Sun Feb 14 2010 Jérôme Quelin <jquelin@mandriva.org> 0.30.0-1mdv2010.1
 + Revision: 505724
-- rebuild using %%perl_convert_version
-
-* Mon Sep 14 2009 Thierry Vignaud <tv@mandriva.org> 0.03-2mdv2010.0
+- rebuild using %0.04 Mon Sep 14 2009 Thierry Vignaud <tv@mandriva.org> 0.03-2mdv2010.0
 + Revision: 440553
 - rebuild
 
